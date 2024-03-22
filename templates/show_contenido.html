@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content3 %}
+    {% if request.path == '/' %}
+
+    {% elif request.path == '/about' %}
+    <h2>About Our Tourism Company</h2>
+    <p>Welcome to [Nombre de tu empresa], your gateway to unforgettable travel experiences. We are passionate about providing exceptional tourism services that go beyond expectations.</p>
+    <p>At [Nombre de tu empresa], we believe in the transformative power of travel. Whether it's exploring vibrant cities, relaxing on pristine beaches, or immersing yourself in rich cultural experiences, we are dedicated to making your journey memorable and fulfilling.</p>
+    <p>Our team of seasoned travel experts is committed to crafting personalized itineraries that cater to your interests, ensuring that each trip with us is a unique adventure. We take pride in our attention to detail, ensuring that every aspect of your travel experience is seamless and enjoyable.</p>
+    <h3>Why Choose [Nombre de tu empresa]?</h3>
+    <ul>
+        <li>Exceptional Customer Service: Our dedicated team is here to assist you at every step, providing support and guidance throughout your journey.</li>
+        <li>Unique Experiences: We curate exclusive travel experiences that showcase the best each destination has to offer, creating memories that last a lifetime.</li>
+        <li>Sustainable Tourism: We are committed to responsible travel practices, promoting eco-friendly initiatives to preserve the beauty of our planet.</li>
+        <li>Flexibility and Customization: Tailor your itinerary to suit your preferences, allowing you to create the perfect travel experience for you.</li>
+    </ul>
+    <p>Thank you for considering [Nombre de tu empresa] as your travel companion. Join us on a journey of discovery, adventure, and unparalleled moments.</p>
+
+
+    {% elif request.path == '/location' %}
+    <h2>Our Location</h2>
+   <div id="mapa">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x12a4a296a3
+        edc94f%3A0xf1044539a3f39559!2sPasseig+de+Gr%C3%A0cia%2C+114%2C+08008+Barcelona!5
+        e0!3m2!1ses!2ses!4v1389720196004" width="510" height="425" frameborder="0"
+        style="border:0"></iframe>
+   </div>
+
+    {% elif request.path == '/sites' %}
+
+    <h2>Image Gallery</h2>
+
+    <div class="image-block">
+        <h3>First Set of Images</h3>
+        <div class="image-container">
+            <div class="image-item">
+                <img src="/static/images/DESAYUNO.jpg" alt="Descripción de la imagen 1" width="250" height="200">
+                <p>Imagen en sahara</p>
+            </div>
+            <div class="image-item">
+                <img src="/static/images/playa.jpeg" alt="Descripción de la imagen 2" width="250" height="200">
+                <p>Imagen playa</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-block">
+        <h3>Second Set of Images</h3>
+        <div class="image-container">
+            <div class="image-item">
+                <img src="/static/images/hotel.jpeg" alt="Descripción de la imagen 3" width="250" height="200">
+                <p>Imagen en hotel</p>
+            </div>
+            <div class="image-item">
+                <img src="/static/images/montanya.jpeg" alt="Descripción de la imagen 4" width="250" height="200">
+                <p>Imagen en montaya</p>
+            </div>
+        </div>
+    </div>
+
+
+    {% elif request.path == '/contact' %}
+    <h2>Contact Us</h2>
+    <div class="contact-form">
+        {% if mensaje_agradecimiento %}
+            <div class="mensaje-agradecimiento">
+                <p>{{ mensaje_agradecimiento }}</p>
+            </div>
+        {% endif %}
+
+        <form action="/contact" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required>
+
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" required>
+
+            <label for="comentario">Comentario:</label>
+            <textarea id="comentario" name="comentario" rows="4" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    {% endif %}
+{% endblock %}

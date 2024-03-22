@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My App{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Ej.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Application Web Project_M09_UF1 20/02/2024</h1>
+    </header>
+
+    <nav>
+        <div id="first_id">
+            <ul>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/location">location</a></li>
+                <li><a href="/sites">sites</a></li>
+                <li><a href="/contact">contact</a></li>
+            </ul>
+        </div>
+        
+        <div id="second_id">
+            {% block content1 %} <li><a href="{{ url_for('getaccess') }}">Area Privada</a></li>{% endblock %} 
+        </div>
+
+    </nav>
+
+    <aside>
+        {% block content2 %}<p>¡Bienvenidos a nuestra practica!</p> {% endblock %}
+        
+    </aside>
+
+    <section>
+      
+        {% block content3 %}
+        <div class="imagen-section">
+            <img src="/static/images/turismo.jpeg" alt="Descripción de la imagen">
+        {% endblock %}
+            
+    </section>
+
+
+
+    <footer>
+        <p>&copy; programming app web Mohamed clase Asix2 2023-2024</p>
+    </footer>
+</body>
+</html>

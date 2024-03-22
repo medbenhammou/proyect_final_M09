@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Acees Area privada para usuarios{% endblock %}
+
+
+
+{% block content2 %}
+{% if error_msg %}
+<p style="color: red;">{{ error_msg }}</p>
+{% endif %}
+
+<h2>Access Area Privada</h2>
+<form method="post" action="{{ url_for('getaccess') }}">
+    <label for="correu">Correo:</label>
+    <input type="text" name="correu" required>
+    <label for="contraseña">Contraseña:</label>
+    <input type="password" name="contraseña" required>
+    <button type="submit">log in</button>
+</form>
+<p>¿No tienes una cuenta? <a href="{{ url_for('registrar') }}">Regístrate aquí</a>.</p>
+
+{% endblock %}

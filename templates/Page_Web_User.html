@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %} Area privada de un usuario {% endblock %}
+
+{% block content1 %}
+ 
+<div class="dropdown">
+    <button class="dropbtn"> {{ nombre }} </button>
+    <div class="dropdown-content">
+        <a href="logout">Log out</a>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block content2 %}
+    {% if request.path == '/' %}
+
+    {% elif request.path in ['/access_user', '/show_datos', '/modificar_datos'] %}
+    <h2>Selecciona una opción</h2>
+    <ul>
+        <li><a href="/show_datos">Muestra datos personales</a></li>
+        <li><a href="/modificar_datos">cambiar datos personales</a></li>
+    </ul>
+    {% endif %}
+
+{% endblock %}
+
+{% block content3 %}
+    {% if request.path == '/' %}
+    
+    {% elif request.path == '/registrar' %}
+    {% if resultado == 'AFEGIT' %}
+    <p>Has registrado con éxito. ¡Bienvenido, {{ nombre }}!</p>
+    {% elif resultado == 'JAEXISTEIX' %}
+    <p>Usuario ya registrado. Por favor, inicia sesión.</p>
+    {% endif %}
+    
+    <h2>Registrarse</h2>
+    <form method="post" action="{{ url_for('registrar') }}">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required>
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" required>
+        <label for="correo">Correo:</label>
+        <input type="email" name="correo" required>
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" name="contraseña" required>
+        <button type="submit">Registrarse</button>
+    </form>
+
+    {% elif request.path == '/show_datos' %}
+        <h2>Datos de la cuenta:</h2>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+            </tr>
+            <tr>
+                <td>{{ nombre }}</td>
+                <td>{{ apellido }}</td>
+                <td>{{ correu }}</td>
+            </tr>
+        </table>
+    
+    {% elif request.path == '/modificar_datos' %}
+        {% if resultado == 'MODIFICAT' %}
+        <p>Datos modificados con éxito.</p>
+        {% endif %}
+        <h2>Cambiar datos de la cuenta</h2>
+        <form method="post" action="{{ url_for('modificar_datos') }}">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required>
+        <label for="apellido">Apellido:</label>
+        <input type="txt" name="apellido" required>
+        <label for="correu">Correo:</label>
+        <input type="email" name="correu" required>
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" name="contraseña" required>
+        <button type="submit">Modfie</button>
+    </form>
+    {% endif %}
+{% endblock %}
